@@ -1,2 +1,2 @@
 # MetodologiaCientifica
-Repositório utilizado para a disciplina de metodologia científica cujo objetivo foi aprender a escrever trabalhos científicos
+Repositório utilizado para a disciplina de metodologia científica com o objetivo de aprender a escrever trabalhos científicos.
