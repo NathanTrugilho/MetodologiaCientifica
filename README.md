@@ -37,8 +37,12 @@ O artigo completo está disponível [aqui](artigo_nathan.pdf) e descreve detalha
 ---
 
 ## Resultados
-Os resultados incluem gráficos, tabelas e a expressão simbólica final encontrada pelo modelo.  
+A equação escolhida ficou com uma acurácia de 62,8%, com uma complexidade 5.
 
-Exemplo de equação encontrada pelo modelo (simplificada):
-y = sin(erf (dif f _rank) + 1.2628733e7)
+![Curva ROC](curva_roc.png)
+
+![Matriz de confusão](matriz_confusao.png)
+
+Melhor equação encontrada pelo modelo (simplificada):
+`y = sin(erf(diff_rank) + 1.2628733e7)`
 
