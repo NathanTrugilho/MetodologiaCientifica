@@ -3,30 +3,12 @@ import numpy as np
 
 ARQUIVO_CONTROLE = "horas_treino.txt"
 
-'''HORA = 3600
-DIA = 24*HORA
-SEMANA = 7*DIA'''
-
-
 # Carrego os dados da planilha para a memória ==================
 dados_planilha = np.loadtxt("dados/treino.csv", delimiter = ',' , dtype = float, skiprows=1)
 
 # Faço a divisão entre as variáveis dependentes e independentes 
 var_independentes = dados_planilha[ : ,  [0, 1, 2, 3, 4]]  # Contém somente X                        
 var_dependentes = dados_planilha[ : , 5] # Contém somente Y
-
-'''
-# Previne que sobrescreva o arquivo de treino sem querer ==========================
-for raiz, _, arquivos in os.walk(os.getcwd()):
-    if EQUACOES_PKL in arquivos:
-        while True:
-            resposta = input("Já existe um arquivo de equações. Deseja sobrescrevê-lo? (s/n): ")
-            if resposta.lower() == 'n':
-                return  # Sai da função sem sobrescrever
-            elif resposta.lower() == 's':
-                break  # Sai do while e continua execução
-        break  # Para de procurar mais arquivos após a primeira ocorrência
-'''
 
 # Definindo meu modelo ===================
 modelo = PySRRegressor(
@@ -70,30 +52,5 @@ modelo.topn = int(modelo.population_size*0.303) # Default = 12 / elitismo
 nome_X = ["diff_ht","diff_age","diff_rank","diff_hand","surface"]
 
 modelo.fit(var_independentes, var_dependentes, variable_names=nome_X) # Treino o modelo
-
-'''# Defino que cada checkpoint vai ser de 1 hora
-modelo.timeout_in_seconds = HORA
-# Definir o tempo que o modelo vai executar 
-tempo_execucao = SEMANA
-
-# Criação do arquivo de controle com tempo de treino = 0 (se ele já existir, ele será sobrescrito)
-with open(ARQUIVO_CONTROLE, "w") as f:
-    f.write(str(0))
-
-print(f"Arquivo '{ARQUIVO_CONTROLE}' criado!")
-
-# Defino o nome das variáveis independentes para mostrá-los durante a exibição das equações
-nome_var_independentes = ["Speed","Draft_Bow","Draft_Stern","Beaufort"]
-
-for checkpoint in range(tempo_execucao//HORA):
-    print(f"Checkpoint {checkpoint} de {tempo_execucao//HORA}")
-    modelo.fit(var_independentes,var_dependentes, variable_names= nome_var_independentes) # Treino o modelo
-
-    # Atualizo o arquivo de controle
-    with open(ARQUIVO_CONTROLE, "r+") as f:
-        horas = int(f.read().strip()) + 1
-        f.seek(0)
-        f.write(str(horas))
-        f.truncate()'''
 
 print(modelo)
